@@ -3,17 +3,17 @@
 <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
         <!-- Sidebar user panel -->
-        <div class="user-panel">
+        <!--div class="user-panel">
         <div class="pull-left image">
             <br />
         </div>
         <div class="pull-left info">
-            <p>Alexander Pierce</p>
+            <p></p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
-        </div>
+        </div-->
         <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
+        <!--form action="#" method="get" class="sidebar-form">
         <div class="input-group">
             <input type="text" name="q" class="form-control" placeholder="Search...">
                 <span class="input-group-btn">
@@ -21,16 +21,19 @@
                 </button>
                 </span>
         </div>
-        </form>
+        </form-->
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="treeview">
+            <li class=""><a href="{{route('user.home')}}">Blog</a></li>
             <li class=""><a href="{{route('posts.index')}}">Posts</a></li>
             <li class=""><a href="{{route('categories.index')}}">Categories</a></li>
             <li class=""><a href="{{route('tags.index')}}">Tags</a></li>
             <li class=""><a href="{{route('users.index')}}">Users</a></li>
+            <li class=""><a href="{{route('roles.index')}}">Roles</a></li>
+            <li class=""><a href="{{route('permissions.index')}}">Permissions</a></li>
         </li>
         </ul>
     </section>

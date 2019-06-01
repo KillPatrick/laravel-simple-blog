@@ -13,7 +13,7 @@
 
 Route::group(['namespace' => 'User'], function(){
 
-    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index')->name('user.home');
 
     Route::get('post/{post}', 'PostController@post')->name('post');
 
@@ -22,7 +22,7 @@ Route::group(['namespace' => 'User'], function(){
     Route::get('post/tag/{tag}', 'HomeController@tag')->name('tag');
 });
 
-Route::group(['namespace' => 'Admin'], function(){
+Route::group(['namespace' => 'Admin', 'middleware' => 'auth'], function(){
 
     Route::get('admin/home', 'HomeController@index')->name('admin.home');
 
@@ -30,8 +30,15 @@ Route::group(['namespace' => 'Admin'], function(){
     
     Route::resource('admin/posts', 'PostController');
 
+    Route::resource('admin/roles', 'RoleController');
+
+    Route::resource('admin/permissions', 'PermissionController');
+
     Route::resource('admin/tags', 'TagController');
 
     Route::resource('admin/categories', 'CategoryController');
 
 });
+
+Auth::routes();
+

@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="site-heading">
-            <h1>@yield('title')</h1>
+            <h3>@yield('title')</h3>
             <span class="subheading">@yield('subtitle')</span>
           </div>
         </div>

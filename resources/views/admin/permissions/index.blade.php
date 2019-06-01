@@ -5,7 +5,7 @@
    <link rel="stylesheet" href="{{ asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
 @endsection
 
-@section('page-name', 'Users')
+@section('page-name', 'Permissions')
 
 @section('main-content')
     <!-- Main content -->
@@ -15,37 +15,29 @@
                 <div class="col-md-12">
                     <div class="box">
                         <div class="box-header">
-                          <h3 class="box-title">Available users</h3>
+                          <h3 class="box-title">Available permissions</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                          @can('create', Auth::user())
-                          <a class="btn btn-success" href="{{ route('users.create') }}">Add new</a>
-                          @endcan
+                          <a class="btn btn-success" href="{{ route('permissions.create') }}">Add new</a>
                           <table id="maintable" class="table table-bordered table-striped">
                             <thead>
                             <tr>
                               <th>No.</th>
                               <th>Name</th>
-                              <th>Email</th>
-                              <th>Roles</th>
-                              <th>Created</th>
-                              <th>Updated</th>
-                              <th></th>
-                              <th></th>
+                              <th>Type</th>
+                              <th>Edit</th>
+                              <th>Delete</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse ($users as $key => $user)
+                            @forelse ($permissions as $key => $permission)
                             <tr>
                               <td>{{ $key+1 }}</td>
-                              <td>{{ $user->name }}</td>
-                              <td>{{ $user->email }}</td>
-                              <td>@foreach ($user->roles as $role) <small>{{$role->name}}<br /></small> @endforeach</td>
-                              <td>{{ $user->created_at }}</td>
-                              <td>{{ $user->updated_at }}</td>
-                              <td>@can('create', Auth::user())<a class="btn btn-info btn-xs" href="{{route('users.edit', $user->id)}}">Edit</a>@endcan</td>
-                              <td>@can('destroy', Auth::user())<a class="btn btn-danger btn-xs deletebtn" href="{{route('users.destroy', $user->id)}}">Delete</a>@endcan</td>
+                              <td>{{ $permission->name }}</td>
+                              <td>{{ ucfirst($permission->type) }}</td>
+                              <td><a class="btn btn-info btn-xs" href="{{route('permissions.edit', $permission->id)}}">Edit</a></td>
+                              <td><a class="btn btn-danger btn-xs deletebtn" href="{{route('permissions.destroy', $permission->id)}}">Delete</a></td>
                             </tr>
                             @empty
                             @endforelse
@@ -54,12 +46,9 @@
                             <tr>
                               <th>No.</th>
                               <th>Name</th>
-                              <th>Email</th>
-                              <th>Roles</th>
-                              <th>Created</th>
-                              <th>Updated</th>
-                              <th></th>
-                              <th></th>
+                              <th>Permissions</th>
+                              <th>Type</th>
+                              <th>Delete</th>
                             </tr>
                             </tfoot>
                           </table>
@@ -101,7 +90,7 @@
               type: 'DELETE',  
               data: {'_token' : '{{csrf_token()}}'},
               success: function(result) {
-                console.log(result);
+
               }
         }); 
         table.row( $(this).parents('tr')).remove().draw();

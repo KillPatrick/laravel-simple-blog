@@ -1,7 +1,7 @@
 @extends('user/app')
 
 @if(!$post->image)
-  @section('bg-img', asset('user/img/post-bg.jpg'))
+  @section('bg-img', asset('user/post-bg.jpg'))
 @else
   @section('bg-img', Storage::disk('public')->url($post->image))
 @endif
